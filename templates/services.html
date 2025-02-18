@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row">
+    <form method="get">
+        <input type="text" name="servicename" value="" />
+        <input type="submit" value="Search" />
+    </form>
+
+    {% for n in servicesData %}
+    <div class="col-lg-4 col-md-6">
+      <div class="single-feature mb-30">
+        <div class="title d-flex flex-row pb-20">
+          <span class="{{n.service_icon}}"></span>
+          <h4><a href="#">{{n.service_title}}</a></h4>
+        </div>
+        <p>{{n.service_des | safe }}</p>
+      </div>
+    </div>
+    {% empty %}
+        No data found
+    {% endfor %}
+  </div>
+
+
+  {% endblock %}
