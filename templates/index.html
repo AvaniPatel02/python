@@ -3,7 +3,7 @@
 
 <marquee  onmouseover="stop()" onmouseover="start()">
   {% for news in newsData %}
-  <a href="/newsdetails/{{news.id}}"> {{news.news_title}} </a> &nbsp;&nbsp;&nbsp;
+  <a href="/newsdetails/{{news.news_slug}}"> {{news.news_title}} </a> &nbsp;&nbsp;&nbsp;
   {% endfor %}
 </marquee>
 

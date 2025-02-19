@@ -23,4 +23,20 @@
   </div>
 
 
-  {% endblock %}
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+        {% if servicesData.has_previous %}
+      <li class="page-item"><a class="page-link" href="/services/?page=1">First</a></li>
+      <li class="page-item disabled"><a class="page-link" href="/services/?page={{servicesData.previous_page_number}}">Previous</a></li>
+        {% endif %}
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+        {% if servicesData.has_next %}
+      <li class="page-item"><a class="page-link" href="/services/?page={{servicesData.next_page_number}}">Next</a></li>
+        {% endif %}
+    </ul>
+  </nav>
+
+
+{% endblock %}

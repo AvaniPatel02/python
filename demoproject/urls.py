@@ -32,7 +32,7 @@ urlpatterns = [
     path('saveevenodd/', views.saveevenodd),
     path('marksheet/', views.marksheet),
     path('course/', views.Course),
-    path('newsdetails/<int:newsid>', views.newsDetails),
+    path('newsdetails/<slug>', views.newsDetails),
     path('services/', views.service),
     # path('course/<int:courseid>', views.courseDetails),
     # path('course/<str:courseid>', views.courseDetails),
