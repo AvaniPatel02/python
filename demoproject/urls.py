@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path
 # from demoapp import views  
 from demoproject import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,6 +31,7 @@ urlpatterns = [
     path('userform/', views.userForm,name='userform'),
     path('submitform/', views.submitform,name='submitform'),
     path('calculator/', views.calculator),
+    path('saveenquiry/', views.saveEnquiry, name='saveenquiry'),
     path('saveevenodd/', views.saveevenodd),
     path('marksheet/', views.marksheet),
     path('course/', views.Course),
@@ -39,3 +42,7 @@ urlpatterns = [
     # path('course/<slug:courseid>', views.courseDetails),
     path('course/<courseid>', views.courseDetails),
 ]
+
+
+if settings.DEBUG:
+    urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

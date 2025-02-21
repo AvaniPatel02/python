@@ -2,10 +2,31 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render,redirect
 from .forms import usersForm
 from demoapp.models import Service
+from contactenquiry.models import contactEnquiry
 from news.models import News
 from django.core.paginator import Paginator
+from django.core.mail import send_mail,EmailMultiAlternatives
 
 def homePage(request):
+    subject='Testing mail'
+    form_email='avanipatel0201@gmail.com'
+    msg='<p>Welcome <b>Avani</b></p>'
+    to='avaniptl02@gmail.com'
+    msg=EmailMultiAlternatives(subject,msg,form_email,[to])
+    msg.content_subtype='html'
+    msg.send()
+
+    # send_mail(
+    #     'Testing mail',
+    #     'Here is the message',
+    #     'avanipatel0201@gmail.com',
+    #     ['avaniptl02@gmail.com'],
+    #     fail_silently=False,
+    # )
+
+
+
+
     newsData = News.objects.all();
     servicesData = Service.objects.all().order_by('-service_title')[2:5]
     # for a in servicesData:
@@ -39,9 +60,10 @@ def newsDetails(request,slug):
 def service(request):
        # __icontains
         servicesData = Service.objects.all()
-        paginator=Paginator(servicesData,2)
+        paginator=Paginator(servicesData,3)
         page_number = request.GET.get('page')
         ServiceDatafinal=paginator.get_page(page_number)
+        totalpage = ServiceDatafinal.paginator.num_pages
         if request.method == "GET":
             st=request.GET.get('servicename')
             if st != None:
@@ -49,6 +71,8 @@ def service(request):
 
         data={
             'servicesData':ServiceDatafinal,
+            'lastpage':totalpage,
+            'totalPagelist':[n+1 for n in range(totalpage)]
             
         }
         return render(request, "services.html",data)
@@ -86,6 +110,18 @@ def products(request):
 
 def contactus(request):
     return render(request,"ContactUs.html")
+
+def saveEnquiry(request):
+    n=""
+    if request.method == "POST":
+        name=request.POST.get('name')
+        email=request.POST.get('email')
+        phone=request.POST.get('phone')
+        message=request.POST.get('message')
+        en=contactEnquiry(name=name,email=email,phone=phone,message=message)
+        en.save()
+        n="Data Inserted"
+    return render(request,"ContactUs.html",{'n':n})
 
 def Course(request):
     return HttpResponse("<b>Hello, world. This is the index view of Demoapp.</b>")

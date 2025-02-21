@@ -41,6 +41,12 @@
                 <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
                 height="500" src="{% static 'about3.jpg' %}" alt="">
             </div>
+
+            <div class="col-12">
+                {% if newsDetails.news_image != NULL %}
+                <img src="/media/{{newsDetails.news_image}}"  />
+                {% endif %}
+            </div>
         </div>
     </div>
 

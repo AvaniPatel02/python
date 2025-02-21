@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'demoapp',
     'tinymce',
-    'news'
+    'news',
+    'contactenquiry'
 ]
 
 MIDDLEWARE = [
@@ -129,3 +130,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [
     BASE_DIR,"static"
 ]
+
+
+MEDIA_ROOT = BASE_DIR /"media"
+
+MEDIA_URL = "/media/"
+
+EMAIL_HOST = 'smtp.gmail.com'
+
+EMAIL_PORT = 587
+
+EMAIL_HOST_USER = 'avanipatel0201@gmail.com'
+
+EMAIL_HOST_PASSWORD = 'Av@ni0201'
+
+EMAIL_USE_TLS = True
